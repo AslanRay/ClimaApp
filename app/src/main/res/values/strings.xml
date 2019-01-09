@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Clima</string>
+    <string name="grados">0°</string>
+    <string name="ciudad">Tijuana</string>
+    <string name="estado_clima">Nublado</string>
+    <string name="tv_bienvenida">Bienvenido a la app del clima,haz clic en el
+        boton para poder ver el clima de la ciudad:</string>
+    <string name="btn_ciudad_tijuana">Clima de Tijuana</string>
+
+
+</resources>
