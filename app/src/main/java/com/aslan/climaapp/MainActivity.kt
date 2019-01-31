@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
     var tvGrados:TextView? = null
     var tvEstdo:TextView? = null
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,19 +28,19 @@ class MainActivity : AppCompatActivity() {
 
         if(Network.hayRed(this)) {
             //EJECUTAR SOLICITUD HTTP
-
+            Toast.makeText(this,"Hay red",Toast.LENGTH_SHORT).show()
+            Log.d("Entro","Prueba de logcat")
             //API Key: 7391d815a5132bd9ccddb30572d9fc56
             //Clave ciudad tijuana: 3981609
 
-            val url = "http://api.openweathermap.org/data/2.5/weather?id=3981609&appid=7391d815a5132bd9ccddb30572d9fc56"
+            val url = "http://api.openweathermap.org/data/2.5/weather?id=3981609&units=metric&lang=es&appid=7391d815a5132bd9ccddb30572d9fc56"
 
             val queue = Volley.newRequestQueue(this)
 
             val solicitud = StringRequest(Request.Method.GET,url,Response.Listener<String>{
                     response ->
-                try {
+//                try {
                     Log.d("SolicitudHTTPVolley",response)
-
                     val gson = Gson()
                     val ciudad = gson.fromJson(response,Ciudad::class.java)
 
@@ -51,9 +49,7 @@ class MainActivity : AppCompatActivity() {
                     tvGrados?.text = ciudad.main.temp.toString()+"°"
                     //Como es un arreglo accedemos por su indice
                     tvEstdo?.text = ciudad.weather.get(0).description
-                } catch (e:Error) {
-
-                }
+//                } catch (e:Error) {}
             },Response.ErrorListener{})
 
             queue.add(solicitud)
